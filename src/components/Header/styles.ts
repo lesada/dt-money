@@ -11,10 +11,10 @@ export const Content = styled.div`
   justify-content: space-between;
 
   width: 100%;
-  max-width: 1120px;
+  max-width: ${({ theme }) => theme.containerMaxWidth};
 
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 ${({ theme }) => theme.containerPadding};
 `;
 
 export const NewTransaction = styled.button`
