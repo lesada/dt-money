@@ -1,5 +1,15 @@
+import { ThemeProvider } from "styled-components";
+import Transactions from "./pages/Transactions";
+import { GlobalStyle } from "./styles/global";
+import theme from "./styles/theme";
+
 function App() {
-  return <h1>hello world</h1>;
+  return (
+    <ThemeProvider theme={theme}>
+      <Transactions />
+      <GlobalStyle />
+    </ThemeProvider>
+  );
 }
 
 export default App;
