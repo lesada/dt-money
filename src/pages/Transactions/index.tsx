@@ -2,7 +2,7 @@ import Card from "@/components/Card";
 import Header from "@/components/Header";
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
 import { useTheme } from "styled-components";
-import { Summary } from "./styles";
+import { Summary, Table } from "./styles";
 
 function Transactions() {
   const { colors } = useTheme();
@@ -18,7 +18,7 @@ function Transactions() {
           />
           <Card
             icon={<ArrowCircleDown size={32} color={colors.red[300]} />}
-            title="Expenses"
+            title="Outcomes"
             value={800}
           />
           <Card
@@ -28,6 +28,34 @@ function Transactions() {
             detach
           />
         </Summary>
+        <Table>
+          <tbody>
+            <tr>
+              <td>Website development</td>
+              <td className="income">$ 500.00</td>
+              <td>Development</td>
+              <td>20/02/2022</td>
+            </tr>
+            <tr>
+              <td>Website development</td>
+              <td className="income">$ 500.00</td>
+              <td>Development</td>
+              <td>20/02/2022</td>
+            </tr>
+            <tr>
+              <td> Coffee Latte</td>
+              <td className="outcome">$ 500.00</td>
+              <td>Development</td>
+              <td>20/02/2022</td>
+            </tr>
+            <tr>
+              <td>Website development</td>
+              <td className="income">$ 500.00</td>
+              <td>Development</td>
+              <td>20/02/2022</td>
+            </tr>
+          </tbody>
+        </Table>
       </main>
     </div>
   );
