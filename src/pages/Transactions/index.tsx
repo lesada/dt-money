@@ -44,8 +44,8 @@ function Transactions() {
             </tr>
             <tr>
               <td> Coffee Latte</td>
-              <td className="outcome">$ 500.00</td>
-              <td>Development</td>
+              <td className="outcome">- $ 500.00</td>
+              <td>Food</td>
               <td>20/02/2022</td>
             </tr>
             <tr>

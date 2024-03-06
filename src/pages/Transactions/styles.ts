@@ -8,7 +8,7 @@ export const Summary = styled.section`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 
-  margin-top: -5rem;
+  margin: -5rem auto 0;
   padding: 0 ${({ theme }) => theme.containerPadding};
 `;
 
