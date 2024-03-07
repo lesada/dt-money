@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.svg";
+import Modal from "../Modal";
 import { Container, Content, NewTransaction } from "./styles";
 
 function Header() {
@@ -6,7 +7,13 @@ function Header() {
     <Container>
       <Content>
         <img src={logo} alt="" />
-        <NewTransaction>New Transaction</NewTransaction>
+
+        <Modal
+          title="New transaction"
+          trigger={<NewTransaction>New Transaction</NewTransaction>}
+        >
+          <form action=""></form>
+        </Modal>
       </Content>
     </Container>
   );
