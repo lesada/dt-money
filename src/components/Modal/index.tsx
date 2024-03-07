@@ -12,7 +12,9 @@ function Modal({ children, trigger, title }: ModalProps) {
   const { colors } = useTheme();
   return (
     <Dialog.Root>
-      <Dialog.Trigger>{trigger}</Dialog.Trigger>
+      <Dialog.Trigger asChild type="button">
+        {trigger}
+      </Dialog.Trigger>
       <Dialog.Overlay asChild>
         <Overlay />
       </Dialog.Overlay>

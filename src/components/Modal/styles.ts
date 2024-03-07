@@ -18,6 +18,10 @@ export const Content = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 export const Close = styled.button`
