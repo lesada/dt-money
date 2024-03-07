@@ -1,22 +1,10 @@
 import styled from "styled-components";
 
-export const Summary = styled.section`
+export const Container = styled.table`
   width: 100%;
   max-width: ${({ theme }) => theme.containerMaxWidth};
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-
-  margin: -5rem auto 0;
-  padding: 0 ${({ theme }) => theme.containerPadding};
-`;
-
-export const Table = styled.table`
-  width: 100%;
-  max-width: ${({ theme }) => theme.containerMaxWidth};
-
-  margin: 4rem auto 0;
+  margin: 1.5rem auto 0;
   padding: 0 ${({ theme }) => theme.containerPadding};
 
   border-collapse: separate;
