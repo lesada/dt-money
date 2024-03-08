@@ -1,3 +1,4 @@
+import * as RadioGroup from "@radix-ui/react-radio-group";
 import styled from "styled-components";
 
 export const Container = styled.header`
@@ -54,5 +55,55 @@ export const SubmitButton = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.green[700]};
+  }
+`;
+
+export const TransactionType = styled(RadioGroup.Root)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+`;
+
+export const TransactionTypeButton = styled(RadioGroup.Item)<{
+  $variant: "income" | "outcome";
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  color: ${({ theme }) => theme.colors.gray[300]};
+  background-color: ${({ theme }) => theme.colors.gray[700]};
+  border-radius: 6px;
+  padding: 1rem;
+  transition: background-color 0.2s;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px
+      ${({ theme, $variant }) =>
+        $variant === "income"
+          ? theme.colors.green[500]
+          : theme.colors.red[500]};
+  }
+
+  svg {
+    color: ${({ theme, $variant }) =>
+      $variant === "income" ? theme.colors.green[300] : theme.colors.red[300]};
+    transition: color 0.2s;
+  }
+
+  &[data-state="checked"] {
+    background-color: ${({ theme, $variant }) =>
+      $variant === "income" ? theme.colors.green[700] : theme.colors.red[700]};
+    color: ${({ theme }) => theme.colors.gray[100]};
+    svg {
+      color: ${({ theme }) => theme.colors.gray[100]};
+    }
+  }
+
+  &[data-state="unchecked"]:hover {
+    background-color: ${({ theme }) => theme.colors.gray[600]};
   }
 `;
