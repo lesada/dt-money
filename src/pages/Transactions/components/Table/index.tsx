@@ -1,33 +1,26 @@
+import { TTransaction } from "@/types/transaction";
+import formatToCurrency from "@/utils/formatToCurrency";
 import { Container } from "./styles";
 
-function Table() {
+type TableProps = {
+  transactions: TTransaction[];
+};
+
+function Table({ transactions }: TableProps) {
   return (
     <Container>
       <tbody>
-        <tr>
-          <td>Website development</td>
-          <td className="income">$ 500.00</td>
-          <td>Development</td>
-          <td>20/02/2022</td>
-        </tr>
-        <tr>
-          <td>Website development</td>
-          <td className="income">$ 500.00</td>
-          <td>Development</td>
-          <td>20/02/2022</td>
-        </tr>
-        <tr>
-          <td> Coffee Latte</td>
-          <td className="outcome">- $ 500.00</td>
-          <td>Food</td>
-          <td>20/02/2022</td>
-        </tr>
-        <tr>
-          <td>Website development</td>
-          <td className="income">$ 500.00</td>
-          <td>Development</td>
-          <td>20/02/2022</td>
-        </tr>
+        {transactions.map((transaction) => (
+          <tr key={transaction.id}>
+            <td>{transaction.description}</td>
+            <td className={transaction.type}>
+              {transaction.type === "outcome" && "-"}
+              {formatToCurrency(transaction.price)}
+            </td>
+            <td>{transaction.category}</td>
+            <td>{transaction.createdAt}</td>
+          </tr>
+        ))}
       </tbody>
     </Container>
   );
