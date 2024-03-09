@@ -1,12 +1,9 @@
-import { TTransaction } from "@/types/transaction";
+import { useTransactions } from "@/contexts/transactions";
 import formatToCurrency from "@/utils/formatToCurrency";
 import { Container } from "./styles";
 
-type TableProps = {
-  transactions: TTransaction[];
-};
-
-function Table({ transactions }: TableProps) {
+function Table() {
+  const { transactions } = useTransactions();
   return (
     <Container>
       <tbody>
