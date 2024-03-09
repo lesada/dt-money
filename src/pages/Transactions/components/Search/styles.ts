@@ -40,7 +40,7 @@ export const Button = styled.button`
     color 0.2s,
     border-color 0.2s;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.green[300]};
     color: ${({ theme }) => theme.colors.white};
     border-color: ${({ theme }) => theme.colors.green[300]};

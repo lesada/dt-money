@@ -53,7 +53,7 @@ export const SubmitButton = styled.button`
 
   transition: background-color 0.2s;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.green[700]};
   }
 `;

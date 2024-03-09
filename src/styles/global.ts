@@ -36,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
 
   button:disabled {
     cursor: not-allowed;
+    opacity: 0.6;
   }
 
   input[type=number]::-webkit-inner-spin-button,
