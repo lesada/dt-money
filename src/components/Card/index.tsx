@@ -1,4 +1,4 @@
-import formatToCurrency from "@/utils/formatToCurrency";
+import { formatToCurrency } from "@/utils/formatters";
 import { CardHeader, Container, Value } from "./styles";
 type CardProps = {
   title: string;

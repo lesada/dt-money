@@ -1,5 +1,5 @@
 import { useTransactions } from "@/contexts/transactions";
-import formatToCurrency from "@/utils/formatToCurrency";
+import { formatToCurrency, formatToShortDate } from "@/utils/formatters";
 import { Container } from "./styles";
 
 function Table() {
@@ -15,7 +15,7 @@ function Table() {
               {formatToCurrency(transaction.value)}
             </td>
             <td>{transaction.category}</td>
-            <td>{transaction.createdAt}</td>
+            <td>{formatToShortDate(transaction.createdAt)}</td>
           </tr>
         ))}
       </tbody>
