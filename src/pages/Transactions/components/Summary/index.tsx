@@ -1,27 +1,43 @@
 import Card from "@/components/Card";
+import { useTransactions } from "@/contexts/transactions";
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
 import { useTheme } from "styled-components";
 import { Container } from "./styles";
 
 function Sumary() {
   const { colors } = useTheme();
+  const { transactions } = useTransactions();
+
+  const summary = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === "income") acc.incomes += transaction.value;
+      else acc.outcomes += transaction.value;
+
+      return {
+        incomes: acc.incomes,
+        outcomes: acc.outcomes,
+        total: acc.incomes - acc.outcomes,
+      };
+    },
+    { incomes: 0, outcomes: 0, total: 0 }
+  );
 
   return (
     <Container>
       <Card
         icon={<ArrowCircleUp size={32} color={colors.green[300]} />}
         title="Incomes"
-        value={17000}
+        value={summary.incomes}
       />
       <Card
         icon={<ArrowCircleDown size={32} color={colors.red[300]} />}
         title="Outcomes"
-        value={800}
+        value={summary.outcomes}
       />
       <Card
         icon={<CurrencyDollar size={32} color={colors.white} />}
         title="Balance"
-        value={16200}
+        value={summary.total}
         detach
       />
     </Container>

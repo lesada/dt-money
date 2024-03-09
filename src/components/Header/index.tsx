@@ -16,7 +16,7 @@ function ModalContent() {
   return (
     <Form action="">
       <Input placeholder="Description" type="text" required />
-      <Input placeholder="Price" type="number" required />
+      <Input placeholder="value" type="number" required />
       <Input placeholder="Category" type="text" required />
       <TransactionType>
         <TransactionTypeButton $variant="income" value="income">

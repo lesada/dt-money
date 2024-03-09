@@ -12,7 +12,7 @@ function Table() {
             <td>{transaction.description}</td>
             <td className={transaction.type}>
               {transaction.type === "outcome" && "-"}
-              {formatToCurrency(transaction.price)}
+              {formatToCurrency(transaction.value)}
             </td>
             <td>{transaction.category}</td>
             <td>{transaction.createdAt}</td>

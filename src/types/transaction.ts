@@ -3,6 +3,6 @@ export type TTransaction = {
   description: string;
   type: "income" | "outcome";
   category: string;
-  price: number;
+  value: number;
   createdAt: string;
 };
