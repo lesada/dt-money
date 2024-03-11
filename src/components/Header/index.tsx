@@ -1,7 +1,7 @@
 import logo from "@/assets/logo.svg";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Input from "../Input";
 import Modal from "../Modal";
 import { HeaderSchema, headerSchema } from "./schema";
@@ -17,6 +17,7 @@ import {
 
 function ModalContent() {
   const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting },
@@ -39,18 +40,24 @@ function ModalContent() {
       <Input
         placeholder="Value"
         type="number"
-        {...register("value")}
+        {...register("value", { valueAsNumber: true })}
         inputMode="decimal"
       />
       <Input placeholder="Category" type="text" {...register("category")} />
-      <TransactionType>
-        <TransactionTypeButton $variant="income" value="income">
-          <ArrowCircleUp size={24} /> Income
-        </TransactionTypeButton>
-        <TransactionTypeButton $variant="outcome" value="outcome">
-          <ArrowCircleDown size={24} /> Outcome
-        </TransactionTypeButton>
-      </TransactionType>
+      <Controller
+        control={control}
+        name="type"
+        render={({ field }) => (
+          <TransactionType onValueChange={field.onChange} value={field.value}>
+            <TransactionTypeButton $variant="income" value="income">
+              <ArrowCircleUp size={24} /> Income
+            </TransactionTypeButton>
+            <TransactionTypeButton $variant="outcome" value="outcome">
+              <ArrowCircleDown size={24} /> Outcome
+            </TransactionTypeButton>
+          </TransactionType>
+        )}
+      />
       <SubmitButton type="submit" disabled={isSubmitting}>
         Submit
       </SubmitButton>
