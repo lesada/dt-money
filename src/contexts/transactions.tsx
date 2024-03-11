@@ -12,6 +12,7 @@ import {
 
 type TransactionsContextData = {
   transactions: TTransaction[];
+  fetchTransactions: (query?: string) => Promise<void>;
 };
 
 export const TransactionsContext = createContext({} as TransactionsContextData);
@@ -19,19 +20,23 @@ export const TransactionsContext = createContext({} as TransactionsContextData);
 export function TransactionsProvider({ children }: PropsWithChildren) {
   const [transactions, setTransactions] = useState<TTransaction[]>([]);
 
-  const getTransactions = async () => {
-    const response = await api.get("/transactions");
+  const fetchTransactions = async (query?: string) => {
+    const response = await api.get("/transactions", {
+      params: {
+        q: query,
+      },
+    });
 
     const { data } = response;
     setTransactions(data);
   };
 
   useEffect(() => {
-    getTransactions();
+    fetchTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, fetchTransactions }}>
       {children}
     </TransactionsContext.Provider>
   );

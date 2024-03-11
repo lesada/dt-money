@@ -6,7 +6,7 @@
       "type": "income",
       "category": "Development",
       "value": 1000,
-      "createdAt": "2024-01-01"
+      "createdAt": "2024-01-01T09:00:00Z"
     },
     {
       "id": 2,
@@ -14,7 +14,63 @@
       "type": "outcome",
       "category": "Food",
       "value": 7,
-      "createdAt": "2024-01-02"
+      "createdAt": "2024-01-02T12:30:00Z"
+    },
+    {
+      "id": 3,
+      "description": "Rent",
+      "type": "outcome",
+      "category": "House",
+      "value": 500,
+      "createdAt": "2024-01-03T18:15:00Z"
+    },
+    {
+      "id": 4,
+      "description": "Salary",
+      "type": "income",
+      "category": "Salary",
+      "value": 2000,
+      "createdAt": "2024-01-04T08:45:00Z"
+    },
+    {
+      "id": 5,
+      "description": "Burger King",
+      "type": "outcome",
+      "category": "Food",
+      "value": 20,
+      "createdAt": "2024-01-05T13:20:00Z"
+    },
+    {
+      "id": 6,
+      "description": "McDonald's",
+      "type": "outcome",
+      "category": "Food",
+      "value": 15,
+      "createdAt": "2024-01-06T19:00:00Z"
+    },
+    {
+      "id": 7,
+      "description": "University",
+      "type": "outcome",
+      "category": "Education",
+      "value": 100,
+      "createdAt": "2024-01-07T10:30:00Z"
+    },
+    {
+      "id": 8,
+      "description": "School",
+      "type": "outcome",
+      "category": "Education",
+      "value": 50,
+      "createdAt": "2024-01-08T14:45:00Z"
+    },
+    {
+      "id": 9,
+      "description": "University",
+      "type": "outcome",
+      "category": "Education",
+      "value": 100,
+      "createdAt": "2024-01-09T16:20:00Z"
     }
   ]
 }

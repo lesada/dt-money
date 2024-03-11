@@ -1,3 +1,4 @@
+import { useTransactions } from "@/contexts/transactions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MagnifyingGlass } from "phosphor-react";
 import { useForm } from "react-hook-form";
@@ -5,6 +6,7 @@ import { SearchSchema, searchSchema } from "./schema";
 import { Button, Container, Input } from "./styles";
 
 function Search() {
+  const { fetchTransactions } = useTransactions();
   const {
     register,
     handleSubmit,
@@ -14,8 +16,7 @@ function Search() {
   });
 
   const onSubmit = async (data: SearchSchema) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+    await fetchTransactions(data.search);
   };
 
   return (
