@@ -1,6 +1,9 @@
+import api from "@/api";
 import logo from "@/assets/logo.svg";
+import { useTransactions } from "@/contexts/transactions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Input from "../Input";
 import Modal from "../Modal";
@@ -15,19 +18,29 @@ import {
   TransactionTypeButton,
 } from "./styles";
 
-function ModalContent() {
+function ModalContent({ closeModal }: { closeModal: () => void }) {
+  const { setTransactions } = useTransactions();
+
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<HeaderSchema>({
     resolver: zodResolver(headerSchema),
   });
 
   const onSubmit = async (data: HeaderSchema) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+    const response = await api.post("/transactions", {
+      ...data,
+      createdAt: new Date(),
+    });
+
+    reset();
+
+    setTransactions((prevTransactions) => [response.data, ...prevTransactions]);
+    closeModal();
   };
 
   return (
@@ -42,6 +55,7 @@ function ModalContent() {
         type="number"
         {...register("value", { valueAsNumber: true })}
         inputMode="decimal"
+        step={0.01}
       />
       <Input placeholder="Category" type="text" {...register("category")} />
       <Controller
@@ -58,6 +72,7 @@ function ModalContent() {
           </TransactionType>
         )}
       />
+
       <SubmitButton type="submit" disabled={isSubmitting}>
         Submit
       </SubmitButton>
@@ -66,6 +81,7 @@ function ModalContent() {
 }
 
 function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Container>
       <Content>
@@ -73,8 +89,10 @@ function Header() {
         <Modal
           title="New transaction"
           trigger={<NewTransaction>New Transaction</NewTransaction>}
+          open={isModalOpen}
+          setOpen={setIsModalOpen}
         >
-          <ModalContent />
+          <ModalContent closeModal={() => setIsModalOpen(false)} />
         </Modal>
       </Content>
     </Container>

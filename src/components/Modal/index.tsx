@@ -6,17 +6,19 @@ type ModalProps = {
   title: string;
   children: React.ReactNode;
   trigger: React.ReactNode;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Modal({ children, trigger, title }: ModalProps) {
+function Modal({ children, trigger, title, open, setOpen }: ModalProps) {
   const { colors } = useTheme();
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild type="button">
+    <Dialog.Root open={open}>
+      <Dialog.Trigger asChild type="button" onClick={() => setOpen(true)}>
         {trigger}
       </Dialog.Trigger>
       <Dialog.Overlay asChild>
-        <Overlay />
+        <Overlay onClick={() => setOpen(false)} />
       </Dialog.Overlay>
       <Dialog.Portal>
         <Dialog.Content asChild>
@@ -24,7 +26,7 @@ function Modal({ children, trigger, title }: ModalProps) {
             <Dialog.Title>{title}</Dialog.Title>
             {children}
             <Dialog.Close asChild>
-              <Close>
+              <Close onClick={() => setOpen(false)}>
                 <X size={24} color={colors.gray[500]} />
               </Close>
             </Dialog.Close>

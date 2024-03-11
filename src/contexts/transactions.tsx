@@ -1,5 +1,3 @@
-//create a transaction context
-
 import api from "@/api";
 import { TTransaction } from "@/types/transaction";
 import {
@@ -12,6 +10,7 @@ import {
 
 type TransactionsContextData = {
   transactions: TTransaction[];
+  setTransactions: React.Dispatch<React.SetStateAction<TTransaction[]>>;
   fetchTransactions: (query?: string) => Promise<void>;
 };
 
@@ -24,6 +23,8 @@ export function TransactionsProvider({ children }: PropsWithChildren) {
     const response = await api.get("/transactions", {
       params: {
         q: query,
+        _sort: "createdAt",
+        _order: "desc",
       },
     });
 
@@ -36,7 +37,9 @@ export function TransactionsProvider({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions, fetchTransactions }}>
+    <TransactionsContext.Provider
+      value={{ transactions, fetchTransactions, setTransactions }}
+    >
       {children}
     </TransactionsContext.Provider>
   );
