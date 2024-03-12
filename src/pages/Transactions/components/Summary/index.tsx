@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { useTheme } from "styled-components";
 import { Container } from "./styles";
 
-function Sumary() {
+function Summary() {
   const { colors } = useTheme();
   const { transactions } = useTransactions();
 
@@ -47,4 +47,4 @@ function Sumary() {
   );
 }
 
-export default Sumary;
+export default Summary;
