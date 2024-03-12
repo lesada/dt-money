@@ -12,6 +12,7 @@ import {
   Container,
   Content,
   Form,
+  Image,
   NewTransaction,
   SubmitButton,
   TransactionType,
@@ -91,7 +92,9 @@ function Header() {
   return (
     <Container>
       <Content>
-        <img src={logo} alt="" />
+        <Image>
+          <img src={logo} alt="" />
+        </Image>
         <Modal
           title="New transaction"
           trigger={<NewTransaction>New Transaction</NewTransaction>}

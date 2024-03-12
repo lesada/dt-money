@@ -9,7 +9,10 @@ export const Overlay = styled.div`
 `;
 
 export const Content = styled.div`
-  min-width: 32rem;
+  max-width: 32rem;
+  width: 90vw;
+  height: fit-content;
+
   padding: 2.5rem 3rem;
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.gray[800]};

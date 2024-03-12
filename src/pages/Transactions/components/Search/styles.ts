@@ -45,4 +45,10 @@ export const Button = styled.button`
     color: ${({ theme }) => theme.colors.white};
     border-color: ${({ theme }) => theme.colors.green[300]};
   }
+
+  @media screen and (min-width: 769px) {
+    &::after {
+      content: "Search";
+    }
+  }
 `;

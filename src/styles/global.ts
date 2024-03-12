@@ -18,6 +18,8 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.gray[800]};
     color: ${({ theme }) => theme.colors.gray[100]};
     -webkit-font-somoothing: antialiased;
+
+    overflow-x: hidden;
   }
 
   body, input, textarea, button {

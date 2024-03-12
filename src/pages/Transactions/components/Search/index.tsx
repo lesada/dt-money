@@ -23,7 +23,7 @@ function Search() {
     <Container onSubmit={handleSubmit(onSubmit)}>
       <Input placeholder="Search for transactions" {...register("search")} />
       <Button type="submit" disabled={isSubmitting}>
-        <MagnifyingGlass /> Search
+        <MagnifyingGlass />
       </Button>
     </Container>
   );

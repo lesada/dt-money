@@ -5,6 +5,8 @@ export const Container = styled.div<{ $detach?: boolean }>`
   border-radius: 6px;
   padding: 2rem;
 
+  flex: 1 0 20rem;
+
   ${({ $detach }) =>
     $detach &&
     css`

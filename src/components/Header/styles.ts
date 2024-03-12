@@ -6,10 +6,22 @@ export const Container = styled.header`
   padding: 2.5rem 0 7.5rem;
 `;
 
+export const Image = styled.div`
+  flex: 1;
+  max-width: 11rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2em;
 
   width: 100%;
   max-width: ${({ theme }) => theme.containerMaxWidth};
@@ -28,6 +40,7 @@ export const NewTransaction = styled.button`
   height: 50px;
 
   transition: background-color 0.2s;
+  flex-shrink: 0;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.green[700]};
