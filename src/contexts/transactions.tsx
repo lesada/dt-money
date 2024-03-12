@@ -3,8 +3,10 @@ import { TTransaction } from "@/types/transaction";
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -19,7 +21,7 @@ export const TransactionsContext = createContext({} as TransactionsContextData);
 export function TransactionsProvider({ children }: PropsWithChildren) {
   const [transactions, setTransactions] = useState<TTransaction[]>([]);
 
-  const fetchTransactions = async (query?: string) => {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const response = await api.get("/transactions", {
       params: {
         q: query,
@@ -30,16 +32,18 @@ export function TransactionsProvider({ children }: PropsWithChildren) {
 
     const { data } = response;
     setTransactions(data);
-  };
+  }, []);
 
   useEffect(() => {
     fetchTransactions();
   }, []);
 
+  const contextValue = useMemo(() => {
+    return { transactions, fetchTransactions, setTransactions };
+  }, [transactions, fetchTransactions, setTransactions]);
+
   return (
-    <TransactionsContext.Provider
-      value={{ transactions, fetchTransactions, setTransactions }}
-    >
+    <TransactionsContext.Provider value={contextValue}>
       {children}
     </TransactionsContext.Provider>
   );

@@ -3,7 +3,7 @@ import logo from "@/assets/logo.svg";
 import { useTransactions } from "@/contexts/transactions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Input from "../Input";
 import Modal from "../Modal";
@@ -31,17 +31,23 @@ function ModalContent({ closeModal }: { closeModal: () => void }) {
     resolver: zodResolver(headerSchema),
   });
 
-  const onSubmit = async (data: HeaderSchema) => {
-    const response = await api.post("/transactions", {
-      ...data,
-      createdAt: new Date(),
-    });
+  const onSubmit = useCallback(
+    async (data: HeaderSchema) => {
+      const response = await api.post("/transactions", {
+        ...data,
+        createdAt: new Date(),
+      });
 
-    reset();
+      reset();
 
-    setTransactions((prevTransactions) => [response.data, ...prevTransactions]);
-    closeModal();
-  };
+      setTransactions((prevTransactions) => [
+        response.data,
+        ...prevTransactions,
+      ]);
+      closeModal();
+    },
+    [reset, setTransactions, closeModal]
+  );
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

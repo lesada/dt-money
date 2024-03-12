@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import { useTransactions } from "@/contexts/transactions";
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
+import { useMemo } from "react";
 import { useTheme } from "styled-components";
 import { Container } from "./styles";
 
@@ -8,19 +9,21 @@ function Sumary() {
   const { colors } = useTheme();
   const { transactions } = useTransactions();
 
-  const summary = transactions.reduce(
-    (acc, transaction) => {
-      if (transaction.type === "income") acc.incomes += transaction.value;
-      else acc.outcomes += transaction.value;
+  const summary = useMemo(() => {
+    return transactions.reduce(
+      (acc, transaction) => {
+        if (transaction.type === "income") acc.incomes += transaction.value;
+        else acc.outcomes += transaction.value;
 
-      return {
-        incomes: acc.incomes,
-        outcomes: acc.outcomes,
-        total: acc.incomes - acc.outcomes,
-      };
-    },
-    { incomes: 0, outcomes: 0, total: 0 }
-  );
+        return {
+          incomes: acc.incomes,
+          outcomes: acc.outcomes,
+          total: acc.incomes - acc.outcomes,
+        };
+      },
+      { incomes: 0, outcomes: 0, total: 0 }
+    );
+  }, [transactions]);
 
   return (
     <Container>
