@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "json-server server.json -d 500 -w",
-    "build": "tsc && vite build",
+    "dev:server": "json-server db.json -d 500 -w",
+    "build": "tsc && vite build && yarn node ./server.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
