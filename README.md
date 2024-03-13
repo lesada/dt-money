@@ -1,6 +1,6 @@
 # DT Money
 
-### A website to focus using the pomodoro method
+### A mock website to register incomes and outcomes
 
 ![image](https://github.com/lesada/dt-money/assets/68572174/a3bab253-02df-4626-9ff0-13eb6d1571cc)
 
